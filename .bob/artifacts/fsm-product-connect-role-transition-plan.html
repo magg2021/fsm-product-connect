@@ -1,0 +1,515 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FSM Product Connect — Role Transition Plan</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1f2328;
+    background: #ffffff;
+    padding: 24px 16px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  /* Header */
+  .header { border-bottom: 2px solid #3b82d4; padding-bottom: 16px; margin-bottom: 28px; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #1f2328; }
+  .header .subtitle { color: #57606a; font-size: 13px; margin-top: 4px; }
+  .meta-row { display: flex; gap: 24px; margin-top: 10px; flex-wrap: wrap; }
+  .meta-item { font-size: 12px; color: #57606a; }
+  .meta-item strong { color: #1f2328; }
+
+  /* Objective banner */
+  .objective-box {
+    background: #f7f8fa;
+    border-left: 4px solid #3b82d4;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    border-radius: 0 4px 4px 0;
+  }
+  .objective-box .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #57606a; font-weight: 600; margin-bottom: 4px; }
+  .objective-box p { font-size: 14px; color: #1f2328; }
+
+  /* Progress Dashboard */
+  .progress-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+  .progress-card {
+    background: #f7f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .progress-card .big { font-size: 22px; font-weight: 700; color: #3b82d4; }
+  .progress-card .completed { color: #2a7d4f; }
+  .progress-card .label { font-size: 11px; color: #57606a; margin-top: 4px; line-height: 1.4; }
+  .progress-bar-wrap { background: #e5e7eb; border-radius: 4px; height: 5px; margin-top: 6px; }
+  .progress-bar { height: 5px; border-radius: 4px; background: #3b82d4; }
+  .progress-bar.full { background: #2a7d4f; }
+
+  /* Sections */
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1f2328;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-num {
+    background: #3b82d4;
+    color: white;
+    border-radius: 50%;
+    width: 22px; height: 22px;
+    font-size: 11px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 12px; }
+  thead th { background: #f7f8fa; color: #57606a; font-weight: 600; text-align: left; padding: 8px 10px; border-bottom: 1px solid #e5e7eb; font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em; }
+  tbody td { padding: 8px 10px; border-bottom: 1px solid #f0f1f3; vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fafafa; }
+
+  /* Pillars */
+  .pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+  .pillar-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px 14px; }
+  .pillar-card h4 { font-size: 13px; font-weight: 700; color: #1f2328; margin-bottom: 6px; }
+  .pillar-card .products { font-size: 12px; color: #57606a; line-height: 1.5; }
+  .pillar-card .clients { font-size: 11px; color: #3b82d4; margin-top: 4px; }
+
+  /* Status tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .tag-green { background: #ddf4e4; color: #1a7c4b; }
+  .tag-yellow { background: #fff3cd; color: #7d5a00; }
+  .tag-blue { background: #dce9fc; color: #1a4fa0; }
+  .tag-gray { background: #f0f1f3; color: #57606a; }
+  .tag-red { background: #fde8e8; color: #c0392b; }
+
+  /* Motions */
+  .motions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .motion-card { border: 1px solid #e5e7eb; border-radius: 6px; padding: 10px 12px; }
+  .motion-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .motion-card p { font-size: 12px; color: #57606a; }
+
+  /* 90-day plan */
+  .timeline { position: relative; }
+  .month-block { margin-bottom: 20px; }
+  .month-label { font-size: 13px; font-weight: 700; color: #3b82d4; background: #dce9fc; padding: 4px 12px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+  .week-row { display: flex; gap: 8px; margin-bottom: 6px; }
+  .week-badge { background: #e5e7eb; color: #57606a; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; align-self: flex-start; margin-top: 2px; }
+  .week-tasks { font-size: 13px; color: #1f2328; }
+  .week-tasks li { margin-bottom: 2px; padding-left: 12px; position: relative; }
+  .week-tasks li::before { content: "→"; position: absolute; left: 0; color: #57606a; }
+
+  /* Checklist */
+  .checklist li { padding: 4px 0; padding-left: 20px; position: relative; font-size: 13px; border-bottom: 1px solid #f0f1f3; }
+  .checklist li::before { content: "☐"; position: absolute; left: 0; color: #3b82d4; }
+  .checklist { list-style: none; }
+
+  /* Blockers */
+  .blocker-row { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f1f3; align-items: flex-start; }
+  .blocker-row:last-child { border-bottom: none; }
+  .blocker-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .blocker-content h5 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .blocker-content p { font-size: 12px; color: #57606a; }
+
+  /* Contacts */
+  .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .contact-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 4px; padding: 10px 12px; font-size: 12px; }
+  .contact-card strong { display: block; font-size: 13px; margin-bottom: 2px; }
+  .contact-card .role { color: #57606a; }
+  .contact-card .email { color: #3b82d4; font-size: 11px; }
+
+  /* Outcomes table */
+  .outcomes-note { font-size: 12px; color: #57606a; font-style: italic; margin-top: 8px; padding: 8px 12px; background: #f7f8fa; border-radius: 4px; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 11px; color: #57606a; border-top: 1px solid #e5e7eb; margin-top: 40px; padding-top: 14px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  
+  <div class="header">
+    <h1>FSM Core Software Product Connect</h1>
+    <div class="subtitle">Role Transition Plan — Comprehensive Knowledge &amp; Operational Handoff</div>
+    <div class="meta-row">
+      <div class="meta-item"><strong>Prepared by:</strong> Monika Aggarwal</div>
+      <div class="meta-item"><strong>Date:</strong> July 2026</div>
+      <div class="meta-item"><strong>Program:</strong> FSM Core to Modernization</div>
+      <div class="meta-item"><strong>Status:</strong> <span class="tag tag-blue">Ready for Handoff</span></div>
+    </div>
+  </div>
+
+  
+  <div class="objective-box">
+    <div class="label">Program Objective</div>
+    <p>Convert reactive product escalations into a proactive modernization motion across FSM with clearer roadmap alignment, named product coverage, and reusable field assets — enabling CSEs to win faster with product-backed confidence.</p>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">0</span> Program Dashboard</div>
+    <div class="progress-grid">
+      <div class="progress-card">
+        <div class="big">13<span style="font-size:14px;color:#57606a">/48</span></div>
+        <div class="label">AI Editions Enablement Sessions</div>
+        <div class="progress-bar-wrap"><div class="progress-bar" style="width:27%"></div></div>
+      </div>
+      <div class="progress-card">
+        <div class="big">12<span style="font-size:14px;color:#57606a">/54</span></div>
+        <div class="label">Business Value Assessments</div>
+        <div class="progress-bar-wrap"><div class="progress-bar" style="width:22%"></div></div>
+      </div>
+      <div class="progress-card">
+        <div class="big completed">216<span style="font-size:14px;color:#57606a">/216</span></div>
+        <div class="label">Reference Architecture Requests</div>
+        <div class="progress-bar-wrap"><div class="progress-bar full" style="width:100%"></div></div>
+      </div>
+      <div class="progress-card">
+        <div class="big">3<span style="font-size:14px;color:#57606a">/12</span></div>
+        <div class="label">Client Briefing Sessions</div>
+        <div class="progress-bar-wrap"><div class="progress-bar" style="width:25%"></div></div>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>Track</th><th>Status</th><th>Completed</th><th>Support Needed</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Product Connect Governance</strong></td><td><span class="tag tag-green">Live</span></td><td>Biweekly cadence + executive checkpoint established</td><td>PM participation; confirm product coverage by pillar</td></tr>
+        <tr><td><strong>AI Editions Enablement</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>DB2 (Mar 27), MQ (Apr 10), Cognos (May 1)</td><td>PM collaboration for remaining sessions + Seismic publishing</td></tr>
+        <tr><td><strong>Business Value Assessments</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>Db2 &amp; ODM published in ISC Value 360</td><td>PM verification of value levers, benefit ranges, assumptions</td></tr>
+        <tr><td><strong>Reference Architectures</strong></td><td><span class="tag tag-green">Complete</span></td><td>216 requests completed (36 products × 4 motions + variations)</td><td>Standard template endorsement; format standardization</td></tr>
+        <tr><td><strong>Client Briefings</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>Cognos, App Integration, Content Cortex</td><td>PM speakers; marketing support; account-specific validation</td></tr>
+        <tr><td><strong>PM Engagement Model</strong></td><td><span class="tag tag-gray">Design</span></td><td>Agentic workflow design ready for review</td><td>Triage rules confirmation; PM coverage commitment</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">1</span> Four Product Pillars</div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <h4>Application &amp; Runtimes</h4>
+        <div class="products">WAS, Liberty, JSphere, Suite for Java, Cloud Pak for Applications, Code Assistant for Java</div>
+        <div class="clients">State Farm · BNY Mellon · JPMorgan · Mastercard · Citi · Fidelity · USAA · Truist</div>
+      </div>
+      <div class="pillar-card">
+        <h4>Application Integration</h4>
+        <div class="products">MQ, DataPower, API Connect, App Connect, webMethods, Sterling MFT, B2B Integration, Aspera, Event Automation</div>
+        <div class="clients">State Farm · BofA · Fidelity · PNC · Navy Federal · ADP · State Street · Citi</div>
+      </div>
+      <div class="pillar-card">
+        <h4>Business Automation</h4>
+        <div class="products">BAW, ODM, FileNet / Content Cortex, BAMOE, RPA, CP4BA, Automation Decision Services, Capture, Decision Optimization</div>
+        <div class="clients">BofA · Mastercard · JPMorgan · State Farm · Wells Fargo · Progressive · PNC · USAA</div>
+      </div>
+      <div class="pillar-card">
+        <h4>Data Architecture</h4>
+        <div class="products">Db2, DataStage, Cognos Analytics, Planning Analytics, watsonx.data, Netezza, Data Replication, Optim, MDM, SPSS</div>
+        <div class="clients">BofA · State Farm · JPMorgan · Fiserv · Morgan Stanley · Charles Schwab · Principal · MetLife · Goldman Sachs</div>
+      </div>
+    </div>
+    <div class="motions-grid">
+      <div class="motion-card"><h4>Vitality</h4><p>Keep platforms current, secure, supported. Protects annuity revenue, reduces audit risk.</p></div>
+      <div class="motion-card"><h4>Containerization</h4><p>Modernize with flexibility while protecting the core. Enables hybrid cloud and faster deployment.</p></div>
+      <div class="motion-card"><h4>Managed / as a Service</h4><p>Maximize operational value at scale. Reduces operational overhead for clients.</p></div>
+      <div class="motion-card"><h4>Expansion</h4><p>Grow adjacent usage based on proven value. Drives net new revenue on established trust.</p></div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">2</span> Business Value Assessments (BVA) — Handoff State</div>
+    <table>
+      <thead><tr><th>Product</th><th>Status</th><th>Dependency / Next Step</th><th>Access</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Db2</strong></td><td><span class="tag tag-green">Ready</span></td><td>CSE draft complete; PM capability input captured</td><td>ISC Value 360 — use now</td></tr>
+        <tr><td><strong>ODM</strong></td><td><span class="tag tag-green">CS→Vitality Ready</span></td><td>Containerization &amp; SaaS require Antony / Bacary input</td><td>ISC Value 360 — use now</td></tr>
+        <tr><td><strong>Cognos</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>PM review needed to close capability-led value; draft started March</td><td>Pending PM confirmation + Value 360 packaging</td></tr>
+        <tr><td><strong>WAS / Liberty</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>Vitality + Containerization. PM: Brian, Craig, Cassi, Kaushik</td><td>Guided seller / IBMC conversations now</td></tr>
+        <tr><td><strong>FileNet / Content Cortex</strong></td><td><span class="tag tag-red">Not Ready</span></td><td>Sequenced next after Db2; BVA build pending</td><td>Pending BVA build and PM validation</td></tr>
+        <tr><td><strong>Planning Analytics</strong></td><td><span class="tag tag-red">Not Ready</span></td><td>Sequenced after DataStage; PM team busy with demos/pilots</td><td>PM collaboration required</td></tr>
+        <tr><td><strong>MQ, Sterling, BAW, API Connect, DataStage</strong></td><td><span class="tag tag-gray">Queued</span></td><td>CSE draft inputs available; PM engagement needed per product</td><td>C2M / BVE team for guided use</td></tr>
+      </tbody>
+    </table>
+    <div class="outcomes-note">BVA Access Path: ISC → Business Cases → Product modernization BVA template → Discovery → Business Outcomes → Outputs. Until formally published, route requests through C2M / BVE team.</div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">3</span> Client Briefing Sessions — Handoff State</div>
+    <table>
+      <thead><tr><th>Pillar / Event</th><th>Status</th><th>Date</th><th>Focus</th></tr></thead>
+      <tbody>
+        <tr><td><strong>App Integration (AI-Infused Middleware)</strong></td><td><span class="tag tag-green">Completed</span></td><td>May 13</td><td>Sterling, webMethods, API Connect, Aspera — multi-client</td></tr>
+        <tr><td><strong>Content Cortex Product Launch</strong></td><td><span class="tag tag-green">Completed</span></td><td>June 24</td><td>Positioned under Business Automation modernization</td></tr>
+        <tr><td><strong>Cognos Analytics</strong></td><td><span class="tag tag-green">Completed</span></td><td>July 16–17</td><td>Agentic analytics, proactive decisions, governance, PA cross-play</td></tr>
+        <tr><td><strong>App Runtime / WAS — Java Modernization</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>July 14</td><td>Multi-client event; Doug-created WAS→Liberty scope</td></tr>
+        <tr><td><strong>Business Automation / CP4BA</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>TBD</td><td>CP4BA expansion and utilization; confirm target accounts</td></tr>
+        <tr><td><strong>Data Architecture (Db2, DataStage, watsonx.data)</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>TBD</td><td>Build repeatable sessions around modernization triggers</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">4</span> PM Engagement — Proof Points to Carry Forward</div>
+    <table>
+      <thead><tr><th>Client</th><th>Product</th><th>PM Engaged</th><th>Outcome</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Wells Fargo</strong></td><td>Connect:Direct Containers</td><td>James Joseph + Dev (daily PoC)</td><td>Successful PoC; new internal service offering; Q4 ELA trade-up likely</td></tr>
+        <tr><td><strong>BofA</strong></td><td>DataStage Modernization</td><td>Shreya Sisodia</td><td>Blockers resolved; client trust increased; moving positively</td></tr>
+        <tr><td><strong>MetLife / ADP / JPMC / Fiserv</strong></td><td>Cognos Containers</td><td>Greg McDonald, Jim Daly, Yong Li</td><td>$840K MetLife proposal; $3.1M ADP PoC started; Fiserv near complete</td></tr>
+        <tr><td><strong>Citi</strong></td><td>Connect:Direct Containers</td><td>PM + Dev (RFE prioritization)</td><td>Adoption path moving again after blocker escalation</td></tr>
+        <tr><td><strong>Travelers</strong></td><td>FileNet SaaS + AWS Containers</td><td>FileNet PM team</td><td>Stronger RFP response; no CSE was assigned — PM saved the deal</td></tr>
+        <tr><td><strong>Principal</strong></td><td>Content Cortex (CMOD + CM8)</td><td>Matt Warta, Matt Vest</td><td>PoC underway; all three teams aligned on modernization path</td></tr>
+        <tr><td><strong>Principal</strong></td><td>BAW Modernization</td><td>Swapnil</td><td>Two-day engagement; positive feedback; expansion path created</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">5</span> Operating Cadence &amp; Governance</div>
+    <table>
+      <thead><tr><th>Meeting</th><th>Frequency</th><th>Attendees</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Product Connect</strong></td><td>Biweekly</td><td>Monika, Carrie, Stacy, Carson</td><td>Progress, blockers, success stories, field requests</td></tr>
+        <tr><td><strong>Executive Checkpoint</strong></td><td>Monthly</td><td>Priya, Krishnan, Rolando, Monika, Carrie</td><td>Strategic alignment, portfolio direction, leadership asks</td></tr>
+        <tr><td><strong>Decision Review Board (DRB)</strong></td><td>Proposed biweekly</td><td>Product Connect core + account owners</td><td>Fast triage on 2–3 priority blocked accounts</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">6</span> Active Blockers — Executive Action Required</div>
+    <div class="blocker-row">
+      <div class="blocker-icon">🔴</div>
+      <div class="blocker-content">
+        <h5>BVE Template Too Heavy</h5>
+        <p>PMs view the BVA template as too complex, slowing asset completion. <strong>Fix:</strong> Align to minimum viable input set; demonstrate Db2/ODM success as the bar.</p>
+      </div>
+    </div>
+    <div class="blocker-row">
+      <div class="blocker-icon">🟡</div>
+      <div class="blocker-content">
+        <h5>Marketing Support Gap</h5>
+        <p>Client-facing events need stronger marketing partnership for reach and attendance. <strong>Fix:</strong> Secure Kelcey's marketing sponsorship commitment for Q3 events.</p>
+      </div>
+    </div>
+    <div class="blocker-row">
+      <div class="blocker-icon">🟡</div>
+      <div class="blocker-content">
+        <h5>Ritika Portfolio Coverage Gap</h5>
+        <p>Planning Analytics and watsonx.data have limited executive engagement. <strong>Fix:</strong> Confirm executive sponsorship from Priya/Ritika; name PA delegate PM.</p>
+      </div>
+    </div>
+    <div class="blocker-row">
+      <div class="blocker-icon">🟡</div>
+      <div class="blocker-content">
+        <h5>PM Field Bandwidth</h5>
+        <p>Product teams stretched across field requests and priority accounts. <strong>Fix:</strong> Set minimum PM engagement cadence; delegate model per product.</p>
+      </div>
+    </div>
+    <div class="blocker-row">
+      <div class="blocker-icon">🟡</div>
+      <div class="blocker-content">
+        <h5>Reference Architecture Format Inconsistency</h5>
+        <p>Architectures delivered in multiple formats (PPT, draw.io, Word) — no standard. <strong>Fix:</strong> Endorse single current-to-target template; pilot with 3 products via Ryan Mongenel.</p>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">7</span> 90-Day Transition Action Plan</div>
+    <div class="timeline">
+      <div class="month-block">
+        <div class="month-label">Month 1 — Knowledge Transfer &amp; Relationship Building</div>
+        <div class="week-row">
+          <div class="week-badge">Week 1</div>
+          <ul class="week-tasks">
+            <li>Review this transition plan; access Box running log, BVA folder, reference architectures</li>
+            <li>Schedule 1-hour sessions with Carrie Rogers, Stacy Nawrocki, Carson Masterson</li>
+            <li>Review all active client escalations (Citi BWL, Schwab WAS, JPMC Cognos blocker)</li>
+            <li>Access ISC Value 360 and review published Db2 + ODM BVAs</li>
+          </ul>
+        </div>
+        <div class="week-row">
+          <div class="week-badge">Week 2</div>
+          <ul class="week-tasks">
+            <li>Meet with Priya Srinivasan — align on executive priorities and PM engagement expectations</li>
+            <li>Meet with Krishnan NR — field priorities, account-level execution ownership</li>
+            <li>Meet with Rolando Franco — transfer active client context and escalations</li>
+            <li>Join biweekly Product Connect meeting as observer</li>
+          </ul>
+        </div>
+        <div class="week-row">
+          <div class="week-badge">Week 3</div>
+          <ul class="week-tasks">
+            <li>Take ownership of Product Connect running log (Box Notes)</li>
+            <li>Review in-flight BVAs with Erik Mlincek</li>
+            <li>Confirm logistics for July 14 WAS/Liberty event and July 16–17 Cognos event</li>
+            <li>Validate reference architecture format with Ryan Mongenel</li>
+          </ul>
+        </div>
+        <div class="week-row">
+          <div class="week-badge">Week 4</div>
+          <ul class="week-tasks">
+            <li>Lead first biweekly Product Connect meeting</li>
+            <li>Present status at monthly Priya/Krishnan executive checkpoint</li>
+            <li>Identify next 3 priority BVAs for PM engagement</li>
+            <li>Confirm marketing support for Q3 client briefings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="month-block">
+        <div class="month-label">Month 2 — Asset Completion Sprint</div>
+        <div class="week-row">
+          <div class="week-badge">Focus</div>
+          <ul class="week-tasks">
+            <li>Complete 5 additional BVAs: Cognos, WAS/Liberty, FileNet, MQ, Sterling</li>
+            <li>Deliver WAS/Liberty multi-client briefing (July 14) and Cognos session (July 16–17)</li>
+            <li>Stand up Decision Review Board with 3 pilot accounts</li>
+            <li>Publish 10 additional product enablement sessions to Seismic</li>
+            <li>Simplify BVA template — pilot minimum viable input set with 2 PMs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="month-block">
+        <div class="month-label">Month 3 — Standardization &amp; Scale Preparation</div>
+        <div class="week-row">
+          <div class="week-badge">Focus</div>
+          <ul class="week-tasks">
+            <li>Complete 5 additional BVAs: DataStage, PA, BAW, API Connect, DataPower</li>
+            <li>Finalize PM coverage matrix with primary and delegate owners (all pillars)</li>
+            <li>Endorse standardized reference architecture template — document and publish</li>
+            <li>Expand DRB to 5 accounts; formalize intake cadence</li>
+            <li>Launch agentic workflow intake pilot for PM engagement requests</li>
+            <li>Prepare Q3 quarterly review for Priya and Krishnan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">8</span> Incoming Lead: First-Week Checklist</div>
+    <ul class="checklist">
+      <li>Read Product Connect running log on Box (all 6 pages)</li>
+      <li>Access AI Editions Seismic hub — review DB2, MQ, Cognos enablement content</li>
+      <li>Open ISC Value 360 — review Db2 and ODM BVA templates</li>
+      <li>Review "Who's Who in Core Software" document on Seismic</li>
+      <li>Join biweekly Product Connect calendar series (Monika, Carrie, Stacy, Carson)</li>
+      <li>Join monthly executive checkpoint calendar invite (Priya, Krishnan, Rolando)</li>
+      <li>Join Product Connect Slack channel — read 30-day history</li>
+      <li>Schedule 1:1 with Carrie Rogers (reference architectures + PM coverage)</li>
+      <li>Schedule 1:1 with Stacy Nawrocki (AI Editions + BVA validation)</li>
+      <li>Schedule 1:1 with Erik Mlincek (BVE methodology + BVA pipeline)</li>
+      <li>Review active client escalation list with Rolando Franco</li>
+      <li>Download and review all key presentation decks (listed in Appendix)</li>
+    </ul>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">9</span> Key Contacts</div>
+    <div class="contacts-grid">
+      <div class="contact-card">
+        <strong>Priya Srinivasan</strong>
+        <div class="role">VP, Core Software Product Mgmt — Executive Sponsor</div>
+        <div class="email">priya.srinivasan@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Krishnan NR</strong>
+        <div class="role">FSM Technical Sales Leader — Field Strategy</div>
+        <div class="email">krishnan.nr@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Carrie Rogers</strong>
+        <div class="role">Core Software PM — Reference Architectures, PM Coverage</div>
+        <div class="email">carrie.rogers@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Stacy Nawrocki</strong>
+        <div class="role">Core Software PM — AI Editions, BVA Validation</div>
+        <div class="email">stacy.nawrocki@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Carson Masterson</strong>
+        <div class="role">FSM Technical Sales — Field Support, Pilots</div>
+        <div class="email">carson.masterson@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Rolando Franco</strong>
+        <div class="role">FSM Technical Sales — Account Execution</div>
+        <div class="email">rolando.franco@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Erik Mlincek</strong>
+        <div class="role">BVE Team — Business Value Assessment Methodology</div>
+        <div class="email">erik.mlincek@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Yuhong Yin</strong>
+        <div class="role">Product Mgmt (Data) — Planning Analytics, watsonx.data</div>
+        <div class="email">yuhong.yin@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Ryan Mongenel</strong>
+        <div class="role">ATL — Reference Architecture Framework</div>
+        <div class="email">ryan.mongenel@ibm.com</div>
+      </div>
+      <div class="contact-card">
+        <strong>Marc Haberkorn</strong>
+        <div class="role">Product Mgmt (App Runtime) — WAS, Liberty</div>
+        <div class="email">marc.haberkorn@ibm.com</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-title"><span class="section-num">10</span> Success Metrics</div>
+    <table>
+      <thead><tr><th>Metric</th><th>Current</th><th>EOY Target</th></tr></thead>
+      <tbody>
+        <tr><td>AI Editions Enablement Sessions</td><td>13 completed</td><td>48 complete</td></tr>
+        <tr><td>Business Value Assessments in Value 360</td><td>12 (2 published)</td><td>54 complete / published</td></tr>
+        <tr><td>Client Briefing Sessions</td><td>3 completed</td><td>12 complete</td></tr>
+        <tr><td>Reference Architecture Standard</td><td>216 requests complete; format inconsistent</td><td>1 endorsed template adopted across all products</td></tr>
+        <tr><td>Blocked Accounts Resolved</td><td>State Farm ✅, Citi PA ✅</td><td>DRB resolves &lt;2 weeks per blocker</td></tr>
+        <tr><td>Decision Review Board Accounts</td><td>0 (design phase)</td><td>10 accounts in active DRB cadence</td></tr>
+        <tr><td>PM Coverage Matrix</td><td>Partial — primary owners named</td><td>Primary + delegate coverage confirmed for all 36 products</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>FSM Core Software Product Connect — Transition Plan · Prepared July 2026 · Monika Aggarwal</p>
+    <p style="margin-top:6px">Made with IBM Bob</p>
+  </div>
+
+</div>
+</body>
+</html>
