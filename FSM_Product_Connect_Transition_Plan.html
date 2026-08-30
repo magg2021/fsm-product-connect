@@ -213,28 +213,63 @@
 
   /* ── Footer ──────────────────────────────────── */
   .footer { text-align: center; font-size: 11px; color: #525252; border-top: 1px solid #c6c6c6; margin-top: 16px; padding-top: 16px; }
+  
+  /* ── Responsive Table Wrappers ────────────────────── */
+  .table-wrap { overflow-x: auto; margin-bottom: 12px; width: 100%; border: 1px solid #e8e8e8; border-radius: 4px; }
+  .table-wrap table { margin-bottom: 0; }
+  
+  /* ── Structured Checklist ─────────────────────────── */
+  .checklist-week { margin-bottom: 20px; }
+  .checklist-week h4 { font-size: 12.5px; font-weight: 700; color: #003a6b; margin-bottom: 8px; border-bottom: 1px dashed #c6c6c6; padding-bottom: 4px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .checklist-week ul { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; }
+  .checklist-week li { padding: 5px 0 5px 22px; position: relative; font-size: 12.5px; border-bottom: 1px solid #f4f4f4; color: #003a6b; }
+  .checklist-week li::before { content: "☐"; position: absolute; left: 0; color: #0f62fe; font-weight: bold; }
+  @media (max-width: 600px) {
+    .checklist-week ul { grid-template-columns: 1fr; }
+  }
+
+  /* ── Additional styling helpers ───────────────────── */
+  .flex-inline { display: inline-flex; align-items: center; gap: 8px; }
+  .text-highlight { background: #edf5ff; padding: 2px 6px; border-radius: 4px; font-weight: 600; color: #0043ce; }
+
+  /* ── Responsive Grids Media Query ─────────────────── */
+  @media (max-width: 768px) {
+    .pillars-grid, .contacts-grid, .metrics-grid, .blockers-grid {
+      grid-template-columns: 1fr !important;
+    }
+    div[style*="grid-template-columns: 1fr 1fr"],
+    div[style*="grid-template-columns: repeat(3, 1fr)"],
+    div[style*="grid-template-columns: repeat(4, 1fr)"] {
+      grid-template-columns: 1fr !important;
+      gap: 12px !important;
+    }
+  }
 </style>
 </head>
 <body>
 
   <!-- ── STICKY NAV ─────────────────────────────────────── -->
   <nav class="nav">
-    <div class="nav-brand">FSM Product Connect</div>
+    <div class="nav-brand">Product Connect Handoff</div>
     <a href="#progress">Progress</a>
-    <a href="#tracks">Track Status</a>
-    <a href="#enablement">AI Editions Series</a>
+    <a href="#tracks">Tracks</a>
+    <a href="#pillars">Pillars &amp; Motions</a>
+    <a href="#success">Success Stories</a>
     <a href="#bva">BVA State</a>
-    <a href="#bva-sample">BVA Sample</a>
-    <a href="#blockers">Blockers</a>
-    <a href="#cadence">Cadence</a>
-    <a href="#pillars">Pillars</a>
+    <a href="#enablement">AI Editions</a>
     <a href="#briefings">Briefings</a>
+    <a href="#client-work">Client Work</a>
+    <a href="#blockers">Blockers</a>
+    <a href="#methodology">Methodology</a>
+    <a href="#cadence">Cadence</a>
+    <a href="#risks">Risks &amp; Mitigation</a>
+    <a href="#checklist">Handoff Checklist</a>
     <a href="#contacts">Contacts</a>
-    <a href="#checklist">Checklist</a>
     <a href="#resources">Resources</a>
+    <a href="#vision">Vision</a>
   </nav>
 
-<div class="page">
+<div class="page" style="max-width: 1000px;">
 
   <!-- ── HEADER ─────────────────────────────────────────── -->
   <div class="header">
@@ -261,19 +296,20 @@
     <p>Convert reactive product escalations into a <strong>proactive modernization motion</strong> across FSM — with clearer roadmap alignment, named product coverage per pillar, and reusable field assets — so CSEs win faster with product-backed confidence.</p>
   </div>
 
-  <!-- ── PROGRAM PROGRESS ───────────────────────────────── -->
+  <!-- ── PROGRAM PROGRESS & TARGETS ─────────────────────── -->
   <div class="section" id="progress">
-    <div class="section-title"><span class="s-icon blue" style="background:#3b82d4;">1</span> Program Progress — August 14, 2026</div>
-    <div class="impact-strip">
+    <div class="section-title"><span class="s-icon blue" style="background:#3b82d4;">1</span> Program Progress &amp; Targets</div>
+    
+    <div class="impact-strip" style="margin-bottom: 24px;">
       <div class="impact-card">
         <div class="num blue">13<span class="denom">/48</span></div>
         <div class="i-label">Product Enablement Sessions<br>(AI Editions)</div>
         <div class="bar-wrap"><div class="bar blue" style="width:27%"></div></div>
       </div>
       <div class="impact-card">
-        <div class="num blue">12<span class="denom">/54</span></div>
-        <div class="i-label">Business Value Assessments<br>in progress</div>
-        <div class="bar-wrap"><div class="bar blue" style="width:22%"></div></div>
+        <div class="num blue">13<span class="denom">/54</span></div>
+        <div class="i-label">Business Value Assessments<br>completed</div>
+        <div class="bar-wrap"><div class="bar blue" style="width:24%"></div></div>
       </div>
       <div class="impact-card">
         <div class="num green">216<span class="denom">/216</span></div>
@@ -286,157 +322,537 @@
         <div class="bar-wrap"><div class="bar blue" style="width:25%"></div></div>
       </div>
     </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; border-bottom: 1px solid #e8e8e8; padding-bottom: 4px; text-transform: uppercase; letter-spacing: 0.02em;">EOY 2026 Asset Completion Targets</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Asset Type</th>
+                <th>Completed</th>
+                <th>Target</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>AI Editions Sessions</strong></td>
+                <td>13</td>
+                <td>48</td>
+                <td><span class="tag tag-blue">27%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Business Value Assessments</strong></td>
+                <td>13</td>
+                <td>54</td>
+                <td><span class="tag tag-blue">24%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Reference Architectures</strong></td>
+                <td>216</td>
+                <td>216</td>
+                <td><span class="tag tag-green">100%</span></td>
+              </tr>
+              <tr>
+                <td><strong>Client Briefing Sessions</strong></td>
+                <td>3</td>
+                <td>12</td>
+                <td><span class="tag tag-blue">25%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; border-bottom: 1px solid #e8e8e8; padding-bottom: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Quarterly Milestones (2026)</h4>
+        <ul style="list-style: none; font-size: 12.5px; line-height: 1.5; color: #003a6b;">
+          <li style="margin-bottom: 10px; border-bottom: 1px solid #f4f4f4; padding-bottom: 6px;">
+            <strong style="color: #0f62fe;">Q2 2026:</strong> Complete 9 additional BVAs (total 22/54) • Deliver 6 client briefings (total 9/12) • Stand up Decision Review Board (3 pilot accounts) • Finalize PM coverage matrix.
+          </li>
+          <li style="margin-bottom: 10px; border-bottom: 1px solid #f4f4f4; padding-bottom: 6px;">
+            <strong style="color: #0f62fe;">Q3 2026:</strong> Complete 15 additional BVAs (total 37/54) • Complete all 12 client briefings • Launch agentic workflow intake for PM engagement • Publish standard ref architecture template.
+          </li>
+          <li>
+            <strong style="color: #0f62fe;">Q4 2026:</strong> Complete all 54 BVAs • Complete all 48 AI Editions sessions • Scale DRB to 10 accounts • Publish Product Connect playbook for other markets.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; border-bottom: 1px solid #e8e8e8; padding-bottom: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Program Impact Metrics</h4>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #003a6b;">
+        <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-left: 3px solid #0f62fe;">
+          <strong style="display: block; margin-bottom: 4px;">Client Outcomes</strong>
+          • Blocked modernization motions resolved quarterly<br>
+          • Escalation resolution time (Target: &lt;2 weeks)<br>
+          • PoC-to-production conversion rate<br>
+          • Quarterly PM engagement satisfaction
+        </div>
+        <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-left: 3px solid #0f62fe;">
+          <strong style="display: block; margin-bottom: 4px;">Field Enablement</strong>
+          • CSE usage of BVAs in meetings (Value 360 downloads)<br>
+          • Seismic content views &amp; engagement levels<br>
+          • Quarterly survey feedback on reference architectures
+        </div>
+        <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-left: 3px solid #0f62fe;">
+          <strong style="display: block; margin-bottom: 4px;">Revenue Protection &amp; Growth</strong>
+          • Annuity revenue protected via vitality motion upgrades<br>
+          • Expansion revenue (containers &amp; managed services)<br>
+          • Deal velocity (RFP turnaround &amp; procurement cycle)
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── TRACK STATUS ───────────────────────────────────── -->
   <div class="section" id="tracks">
     <div class="section-title"><span class="s-icon" style="background:#3b82d4;">2</span> Track Status</div>
-    <table>
-      <thead>
-        <tr>
-          <th style="width:22%">Track</th>
-          <th style="width:11%">Progress</th>
-          <th style="width:34%">Current Focus</th>
-          <th style="width:33%">Support Needed from Leadership</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Product Connect Governance</strong></td>
-          <td><span class="tag tag-green">Live</span></td>
-          <td>Monthly interlock live. Handling Project Mystic POVs + 2 blocked modernization motions. Product ownership and Vitality versions confirmed.</td>
-          <td>PM participation in interlock; confirm named owners per pillar; fast-path for blocked accounts.</td>
-        </tr>
-        <tr>
-          <td><strong>Product Enablement Sessions</strong><br><span style="font-size:11px;color:#57606a;">AI Editions · 12 products × 4 motions</span></td>
-          <td><span class="tag tag-yellow">13 / 48</span></td>
-          <td>DB2, MQ &amp; Cognos complete. Product interviews recorded.</td>
-          <td>PM collaboration for remaining sessions; product interview review; Seismic publishing.</td>
-        </tr>
-        <tr>
-          <td><strong>Business Value Assessments</strong></td>
-          <td><span class="tag tag-yellow">12 / 54</span></td>
-          <td>Db2, ODM, Cognos &amp; WAS/Liberty (Vitality) published to ISC Value 360. CSE spreadsheet: 4 Data, 2 App Runtime, 2 App Integration, 4 BA populated.</td>
-          <td>PM verification of value levers, benefit ranges, and product-specific proof points.</td>
-        </tr>
-        <tr>
-          <td><strong>Reference Architectures</strong><br><span style="font-size:11px;color:#57606a;">36 products × 4 motions</span></td>
-          <td><span class="tag tag-green">216 / 216</span></td>
-          <td>Framework complete. Architectures delivered in inconsistent formats (PPT, draw.io, Word).</td>
-          <td>PM + technical owners to validate current/target state; endorse single standard template.</td>
-        </tr>
-        <tr>
-          <td><strong>Client Briefing Sessions</strong></td>
-          <td><span class="tag tag-yellow">3 / 12</span></td>
-          <td>3 done: Cognos, App Integration, Content Cortex. Repeatable narrative being built. Java Modernization in progress.</td>
-          <td>PM speakers; roadmap guardrails; marketing support for Q3/Q4 events.</td>
-        </tr>
-        <tr>
-          <td><strong>PM Engagement Model</strong><br><span style="font-size:11px;color:#57606a;">Agentic Workflow</span></td>
-          <td><span class="tag tag-gray">Design</span></td>
-          <td>Multi-agent workflow design ready for review.</td>
-          <td>Review agentic intake design; confirm triage rules, workflow owners, and approval path.</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:22%">Track</th>
+            <th style="width:11%">Progress</th>
+            <th style="width:34%">Current Focus</th>
+            <th style="width:33%">Support Needed from Leadership</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Product Connect Governance</strong></td>
+            <td><span class="tag tag-green">Live</span></td>
+            <td>Monthly interlock live. Handling Project Mystic POVs + 2 blocked modernization motions. Product ownership and Vitality versions confirmed.</td>
+            <td>PM participation in interlock; confirm named owners per pillar; fast-path for blocked accounts.</td>
+          </tr>
+          <tr>
+            <td><strong>Product Enablement Sessions</strong><br><span style="font-size:11px;color:#57606a;">AI Editions · 12 products × 4 motions</span></td>
+            <td><span class="tag tag-yellow">13 / 48</span></td>
+            <td>DB2, MQ &amp; Cognos complete. Product interviews recorded.</td>
+            <td>PM collaboration for remaining sessions; product interview review; Seismic publishing.</td>
+          </tr>
+          <tr>
+            <td><strong>Business Value Assessments</strong></td>
+            <td><span class="tag tag-yellow">13 / 54</span></td>
+            <td>Db2, ODM, Cognos &amp; WAS/Liberty (Vitality) published to ISC Value 360. CSE spreadsheet: 4 Data, 2 App Runtime, 2 App Integration, 4 BA populated.</td>
+            <td>PM verification of value levers, benefit ranges, and product-specific proof points.</td>
+          </tr>
+          <tr>
+            <td><strong>Reference Architectures</strong><br><span style="font-size:11px;color:#57606a;">36 products × 4 motions</span></td>
+            <td><span class="tag tag-green">216 / 216</span></td>
+            <td>Framework complete. Architectures delivered in inconsistent formats (PPT, draw.io, Word).</td>
+            <td>PM + technical owners to validate current/target state; endorse single standard template.</td>
+          </tr>
+          <tr>
+            <td><strong>Client Briefing Sessions</strong></td>
+            <td><span class="tag tag-yellow">3 / 12</span></td>
+            <td>3 done: Cognos, App Integration, Content Cortex. Repeatable narrative being built. Java Modernization in progress.</td>
+            <td>PM speakers; roadmap guardrails; marketing support for Q3/Q4 events.</td>
+          </tr>
+          <tr>
+            <td><strong>PM Engagement Model</strong><br><span style="font-size:11px;color:#57606a;">Agentic Workflow</span></td>
+            <td><span class="tag tag-gray">Design</span></td>
+            <td>Multi-agent workflow design ready for review.</td>
+            <td>Review agentic intake design; confirm triage rules, workflow owners, and approval path.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <!-- ── BVA STATE ──────────────────────────────────────── -->
+  <!-- ── PRODUCT PILLARS & C2M MOTIONS ──────────────────── -->
+  <div class="section" id="pillars">
+    <div class="section-title"><span class="s-icon gray">3</span> Four Product Pillars &amp; Key Accounts</div>
+    
+    <div class="pillars-grid" style="margin-bottom: 20px;">
+      <div class="pillar-card">
+        <h4>Application &amp; Runtimes</h4>
+        <div class="p-products" style="font-size: 11.5px; margin-bottom: 8px;"><strong>Products:</strong> WebSphere Application Server (WAS), Liberty, JSphere, Suite for Java, Cloud Pak for Applications, Code Assistant for Java</div>
+        <div class="p-clients" style="font-size: 10px; border-top: 1px solid #e8e8e8; padding-top: 6px;"><strong>Key Clients:</strong> State Farm · BNY Mellon · JPMorgan Chase · Mastercard · Citigroup · Fidelity · USAA · Truist</div>
+      </div>
+      <div class="pillar-card">
+        <h4>Application Integration</h4>
+        <div class="p-products" style="font-size: 11.5px; margin-bottom: 8px;"><strong>Products:</strong> DataPower, MQ, webMethods, Hybrid Integration, API Connect, Cloud Pak for Integration, Event Automation, App Connect, Aspera, Sterling (MFT, B2B Integration, Data Exchange SaaS)</div>
+        <div class="p-clients" style="font-size: 10px; border-top: 1px solid #e8e8e8; padding-top: 6px;"><strong>Key Clients:</strong> State Farm · BofA · Fidelity · PNC · Navy Federal · ADP · State Street · Citigroup · Allstate</div>
+      </div>
+      <div class="pillar-card">
+        <h4>Business Automation</h4>
+        <div class="p-products" style="font-size: 11.5px; margin-bottom: 8px;"><strong>Products:</strong> RPA, webMethods, BPMS, Cloud Pak for Business Automation, Business Automation Workflow (BAW), Automation Decision Services, Operational Decision Management (ODM), FileNet / Content Cortex, Capture, Decision Optimization</div>
+        <div class="p-clients" style="font-size: 10px; border-top: 1px solid #e8e8e8; padding-top: 6px;"><strong>Key Clients:</strong> BofA · Mastercard · JPMorgan Chase · State Farm · Wells Fargo · Progressive · PNC · USAA · US Bancorp</div>
+      </div>
+      <div class="pillar-card">
+        <h4>Data Architecture</h4>
+        <div class="p-products" style="font-size: 11.5px; margin-bottom: 8px;"><strong>Products:</strong> watsonx.data integration, DataStage, Data Replication, Cloud Pak for Data, Db2, Informix, Netezza, watsonx.data, watsonx.BI Assistant, SPSS (Modeler, Statistics), Cognos Analytics, Planning Analytics, Optim, Master Data Management, watsonx.data intelligence</div>
+        <div class="p-clients" style="font-size: 10px; border-top: 1px solid #e8e8e8; padding-top: 6px;"><strong>Key Clients:</strong> BofA · State Farm · JPMorgan Chase · Fiserv · USAA · BNY Mellon · Global Payments · Fidelity · Navy Federal · Morgan Stanley · Charles Schwab · Principal Financial · Nationwide · Truist · Fifth Third · State Street · FIS · MetLife · Goldman Sachs</div>
+      </div>
+    </div>
+
+    <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em;">Core to Modernization (C2M) Motions Matrix</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 15%;">C2M Motion</th>
+            <th style="width: 25%;">Purpose</th>
+            <th style="width: 30%;">Client Benefit</th>
+            <th style="width: 30%;">IBM Benefit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Vitality</strong></td>
+            <td>Keep platforms current, secure, supported</td>
+            <td>Operational stability, security compliance &amp; resilience</td>
+            <td>Protected annuity/maintenance revenue</td>
+          </tr>
+          <tr>
+            <td><strong>Containerization</strong></td>
+            <td>Modernize with flexibility while protecting core</td>
+            <td>Faster time to value, hybrid cloud flexibility, resource optimization</td>
+            <td>Deeper trust, higher product stickiness, trade-up path</td>
+          </tr>
+          <tr>
+            <td><strong>Managed / SaaS</strong></td>
+            <td>Maximize operational value at scale</td>
+            <td>Reduced operational overhead, risk &amp; technical debt</td>
+            <td>Repeatable modernization at scale, recurring revenue</td>
+          </tr>
+          <tr>
+            <td><strong>Expansion</strong></td>
+            <td>Grow adjacent usage based on proven value</td>
+            <td>Unlocking new capabilities (e.g. AI Editions, copilots)</td>
+            <td>Net-new license / SaaS revenue growth</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── PM ENGAGEMENT & SUCCESS STORIES ────────────────── -->
+  <div class="section" id="success">
+    <div class="section-title"><span class="s-icon gray">4</span> PM Engagement &amp; Success Stories</div>
+    
+    <div style="margin-bottom: 20px;">
+      <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.02em;">Common PM Engagement Triggers (Slack Survey)</h4>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 12px; color: #003a6b;">
+        <div style="background: #f4f4f4; padding: 10px 12px; border-radius: 6px; border-top: 2px solid #0f62fe;">
+          <strong>1. Product Roadmap Clarity</strong>
+          <div style="color: #525252; margin-top: 4px; font-size: 11.5px;">What is coming, what is safe to say to clients, timing guidance.</div>
+        </div>
+        <div style="background: #f4f4f4; padding: 10px 12px; border-radius: 6px; border-top: 2px solid #0f62fe;">
+          <strong>2. Modernization Blockers</strong>
+          <div style="color: #525252; margin-top: 4px; font-size: 11.5px;">Upgrade, compatibility, or dependency issues stalling progress.</div>
+        </div>
+        <div style="background: #f4f4f4; padding: 10px 12px; border-radius: 6px; border-top: 2px solid #0f62fe;">
+          <strong>3. Architecture Guidance</strong>
+          <div style="color: #525252; margin-top: 4px; font-size: 11.5px;">Supported patterns, reference architectures, key dependencies.</div>
+        </div>
+        <div style="background: #f4f4f4; padding: 10px 12px; border-radius: 6px; border-top: 2px solid #0f62fe;">
+          <strong>4. Competitive Questions</strong>
+          <div style="color: #525252; margin-top: 4px; font-size: 11.5px;">Positioning vs alternatives, where we win or lose.</div>
+        </div>
+        <div style="background: #f4f4f4; padding: 10px 12px; border-radius: 6px; border-top: 2px solid #0f62fe;">
+          <strong>5. AI Editions Packaging</strong>
+          <div style="color: #525252; margin-top: 4px; font-size: 11.5px;">Are agent capabilities included, or separate licensing needed.</div>
+        </div>
+        <div style="background: #f4f4f4; padding: 10px 12px; border-radius: 6px; border-top: 2px solid #0f62fe;">
+          <strong>6. Field Assets</strong>
+          <div style="color: #525252; margin-top: 4px; font-size: 11.5px;">Best decks, demos, workshops, talk tracks for client conversations.</div>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em;">PM Engagement Success Stories</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 15%;">Client</th>
+            <th style="width: 20%;">Product / Track</th>
+            <th style="width: 30%;">PM Engagement</th>
+            <th style="width: 35%;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Wells Fargo</strong></td>
+            <td>Connect:Direct Containers</td>
+            <td>James Joseph (PM) + Dev worked daily on PoC to containerize on OpenShift</td>
+            <td>Successful PoC; Wells announced new internal service offering; trade-up tied to Q4 ELA pull-ahead.</td>
+          </tr>
+          <tr>
+            <td><strong>BofA</strong></td>
+            <td>DataStage Modernization</td>
+            <td>Shreya Sisodia addressed product blockers, gave client confidence in path</td>
+            <td>Client trust increased; DataStage modernization moving positively.</td>
+          </tr>
+          <tr>
+            <td><strong>MetLife, ADP, JPMC, Fiserv</strong></td>
+            <td>Cognos Containers</td>
+            <td>Greg McDonald, Jim Daly, Yong Li supported briefings, PoCs, readiness testing, and dev reviews</td>
+            <td><strong>MetLife:</strong> $840K proposal with procurement.<br><strong>ADP:</strong> $3.1M PoC started.<br><strong>JPMC:</strong> Blocker with Dev.<br><strong>Fiserv:</strong> Readiness near completion.</td>
+          </tr>
+          <tr>
+            <td><strong>Citi</strong></td>
+            <td>Connect:Direct Containers</td>
+            <td>PM prioritized RFEs, pulled Dev into discussion for unique requirements &amp; displacement risk</td>
+            <td>Adoption path moving again after blocker escalation.</td>
+          </tr>
+          <tr>
+            <td><strong>Travelers</strong></td>
+            <td>FileNet SaaS + AWS Containers</td>
+            <td>FileNet PM team stepped in during RFP response, supported demo where no CSE was assigned</td>
+            <td>Stronger RFP response and better client-facing support for complex modernization.</td>
+          </tr>
+          <tr>
+            <td><strong>Principal</strong></td>
+            <td>Content Cortex (CMOD+CM8)</td>
+            <td>Matt Warta &amp; Matt Vest shared roadmap &amp; modernization story during competitive evaluation</td>
+            <td>PoC underway; sales, technical, and product teams aligned on client modernization path.</td>
+          </tr>
+          <tr>
+            <td><strong>Principal</strong></td>
+            <td>BAW Modernization</td>
+            <td>Swapnil shared BAW roadmap &amp; AI capabilities during ServiceNow risk evaluation</td>
+            <td>Two-day client engagement with business users created positive feedback and expansion path.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── BUSINESS VALUE ASSESSMENTS ─────────────────────── -->
   <div class="section" id="bva">
-    <div class="section-title"><span class="s-icon gray">3</span> Business Value Assessment — Handoff State</div>
-    <table>
-      <thead><tr><th>Product</th><th>Status</th><th>Next Step</th><th>Field Access</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Db2</strong></td><td><span class="tag tag-green">Published</span></td><td>CSE draft complete; PM capability input captured. Published to ISC Value 360.</td><td>Live in ISC Value 360 — <a href="https://ibm.ecosystems.io/cvm/doc/298133" target="_blank" style="color:#0f62fe;">open Db2 BVA</a> — use now for guided seller / IBMC conversations.</td></tr>
-        <tr><td><strong>ODM</strong></td><td><span class="tag tag-green">Published</span></td><td>CS→Vitality validated. Containerization &amp; SaaS require Antony / Bacary input. Published to ISC Value 360.</td><td>Live in ISC Value 360 — <a href="https://ibm.ecosystems.io/cva/305292/express/business-outcomes" target="_blank" style="color:#0f62fe;">open ODM BVA</a> — use now for guided seller / IBMC conversations.</td></tr>
-        <tr><td><strong>Cognos</strong></td><td><span class="tag tag-green">Published</span></td><td>BVA complete. PM review done; capability-led value confirmed. Published to ISC Value 360.</td><td>Live in ISC Value 360 — <a href="https://ibm.ecosystems.io/cva/307256/express/business-outcomes" target="_blank" style="color:#0f62fe;">open Cognos BVA</a> — use now for guided seller / IBMC conversations.</td></tr>
-        <tr><td><strong>WAS / Liberty</strong></td><td><span class="tag tag-green">Published</span></td><td>Vitality motion published to ISC Value 360. Containerization &amp; managed service motions in progress. PM: Brian, Craig, Cassi, Kaushik.</td><td>Live in ISC Value 360 (Vitality) — use now for guided seller / IBMC conversations.</td></tr>
-        <tr><td><strong>FileNet / Content Cortex</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>Next product after Db2 sequencing. BVA build pending.</td><td>Pending BVA build and PM validation.</td></tr>
-        <tr><td><strong>Planning Analytics</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>Sequenced after DataStage. PM team currently busy with demos and pilots.</td><td>PM collaboration required.</td></tr>
-        <tr><td><strong>MQ, Sterling, BAW, API Connect, DataStage</strong></td><td><span class="tag tag-gray">Queued</span></td><td>CSE draft inputs available; PM engagement needed per product.</td><td>C2M / BVE team for guided use.</td></tr>
-      </tbody>
-    </table>
-    <div class="note">Db2, ODM, Cognos, and WAS/Liberty (Vitality motion) are published in ISC Value 360 as customizable templates. BVA Access Path: ISC → Business Cases → Product modernization BVA template → Discovery → Business Outcomes → Outputs. For products not yet in Value 360, route requests through the C2M / BVE team. There is also a <strong>generic opportunity available as a proof point sample for Db2</strong> — <a href="https://ibm.ecosystems.io/cvm/" target="_blank" style="color:#0f62fe;">open sample in ISC Value 360</a>.</div>
-  </div>
+    <div class="section-title"><span class="s-icon gray">5</span> Business Value Assessments — Handoff State</div>
+    
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Product</th><th>Status</th><th>Next Step / Handoff State</th><th>Field Access / Action Link</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Db2</strong></td><td><span class="tag tag-green">Published</span></td><td>CSE draft complete; PM capability input captured. Published to ISC Value 360.</td><td>Live in ISC Value 360 — <a href="https://ibm.ecosystems.io/cvm/doc/298133" target="_blank" style="color:#0f62fe;font-weight:600;">Open Db2 BVA</a> — use for guided seller/client conversations.</td></tr>
+          <tr><td><strong>ODM</strong></td><td><span class="tag tag-green">Published</span></td><td>CS→Vitality validated. Containerization &amp; SaaS require Antony / Bacary input. Published to ISC Value 360.</td><td>Live in ISC Value 360 — <a href="https://ibm.ecosystems.io/cva/305292/express/business-outcomes" target="_blank" style="color:#0f62fe;font-weight:600;">Open ODM BVA</a>.</td></tr>
+          <tr><td><strong>Cognos</strong></td><td><span class="tag tag-green">Published</span></td><td>BVA complete. PM review done; capability-led value confirmed. Published to ISC Value 360.</td><td>Live in ISC Value 360 — <a href="https://ibm.ecosystems.io/cva/307256/express/business-outcomes" target="_blank" style="color:#0f62fe;font-weight:600;">Open Cognos BVA</a>.</td></tr>
+          <tr><td><strong>WAS / Liberty</strong></td><td><span class="tag tag-green">Published</span></td><td>Vitality motion published to ISC Value 360. Containerization &amp; managed service motions in progress. PM: Brian, Craig, Cassi, Kaushik.</td><td>Live in ISC Value 360 (Vitality motion) — use for seller conversations.</td></tr>
+          <tr><td><strong>FileNet / Content Cortex</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>Next product after Db2 sequencing. BVA build pending.</td><td>Pending BVA build and PM validation.</td></tr>
+          <tr><td><strong>Planning Analytics</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>Sequenced after DataStage. PM team currently busy with demos and pilots.</td><td>PM collaboration required.</td></tr>
+          <tr><td><strong>MQ, Sterling, BAW, API Connect, DataStage</strong></td><td><span class="tag tag-gray">Queued</span></td><td>CSE draft inputs available; PM engagement needed per product.</td><td>Contact C2M / BVE team for guided use.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-  <!-- ── BVA SELLER ENABLEMENT SAMPLE ─────────────────── -->
-  <div class="section" id="bva-sample">
-    <div class="section-title"><span class="s-icon gray">4</span> BVA Seller Enablement — Sample Db2</div>
-    <div style="display:flex;align-items:center;gap:14px;padding:14px 0 6px;">
-      <span style="font-size:13px;font-weight:600;color:#003a6b;">Box Link:</span>
-      <a href="https://ibm.box.com/s/597x7z53tvb9puy6lm5lsvq9f2917we4" target="_blank" style="font-size:13px;color:#0f62fe;font-weight:600;text-decoration:underline;">Db2 BVA Seller Enablement — Open in Box</a>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; margin-bottom: 12px;">
+      <div>
+        <h4 style="font-size: 12.5px; font-weight: 700; color: #003a6b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.02em;">BVA Discovery &amp; Value Framework</h4>
+        <ul style="list-style: none; font-size: 12px; color: #003a6b; padding-left: 0;">
+          <li style="margin-bottom: 4px;"><strong>1. Discovery:</strong> Capture "Why Change / Why Now / Why IBM" context from customer.</li>
+          <li style="margin-bottom: 4px;"><strong>2. Business Outcomes:</strong> Select modernization motion and benefit levers (e.g. risk reduction, speed).</li>
+          <li style="margin-bottom: 4px;"><strong>3. Assumptions:</strong> Input client benchmarks, sizing, and product-specific proof parameters.</li>
+          <li><strong>4. Outputs:</strong> Automatically generate client-facing financial benefits and cost of inaction.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="font-size: 12.5px; font-weight: 700; color: #003a6b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.02em;">Access Paths &amp; Resources</h4>
+        <div style="font-size: 12px; color: #003a6b; line-height: 1.5;">
+          <strong>Standard Access Path:</strong><br>
+          <span class="text-highlight" style="font-size: 11px;">ISC → Business Cases → Product modernization BVA template</span>
+          <div style="margin-top: 6px;">
+            <strong>Db2 Seller Enablement Asset:</strong><br>
+            <a href="https://ibm.box.com/s/597x7z53tvb9puy6lm5lsvq9f2917we4" target="_blank" style="color: #0f62fe; font-weight: 600; text-decoration: underline;">Db2 BVA Seller Enablement — Open in Box</a>
+          </div>
+          <div style="margin-top: 4px;">
+            <strong>Db2 Opportunity Proof Point Sample:</strong><br>
+            <a href="https://ibm.ecosystems.io/cvm/" target="_blank" style="color: #0f62fe; font-weight: 600; text-decoration: underline;">Generic Db2 Proof Point Opportunity — Open in Value 360</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="note" style="margin-top: 10px;">
+      <strong>Note:</strong> Db2, ODM, Cognos, and WAS/Liberty (Vitality motion) are published in ISC Value 360 as customizable templates. For products not yet in Value 360, route requests through the C2M / BVE team (Erik Mlincek / Diana Cabrera). Key dependency is PM validation of value levers and benefit ranges.
     </div>
   </div>
 
   <!-- ── SELLER ENABLEMENT ─────────────────────────────── -->
   <div class="section" id="enablement">
-    <div class="section-title"><span class="s-icon" style="background:#3b82d4;">5</span> AI Editions Series</div>
-    <table>
-      <thead><tr><th style="width:20%">Product / Track</th><th style="width:14%">Date</th><th style="width:30%">Session Focus</th><th style="width:36%">Recording</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>Db2</strong></td>
-          <td>Mar 27</td>
-          <td>AI Editions — modernization value, containerization path, vitality messaging</td>
-          <td><a href="https://ibm.seismic.com/Link/Content/DCRJ66VdF4hhBGh2q6c7PFcWCH38" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
-        </tr>
-        <tr>
-          <td><strong>MQ</strong></td>
-          <td>Apr 10</td>
-          <td>AI Editions — messaging, roadmap guardrails, field use cases</td>
-          <td><a href="https://ibm.seismic.com/Link/Content/DCqVpPp4Tb47h8QCpX6DqG79DBcV" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
-        </tr>
-        <tr>
-          <td><strong>Cognos Analytics</strong><br><span style="font-size:11px;color:#57606a;">Rachel Su</span></td>
-          <td>May 1</td>
-          <td>Agentic AI for Enterprise BI with IBM Cognos Analytics. Cognos agents help users find, summarize, create, and share reports using natural language inside the governed BI environment — higher productivity, quicker answers, and AI that works with existing metrics, permissions, and controls.</td>
-          <td><a href="https://ibm.seismic.com/Link/Content/DCpGBVVFQCMW6GmVT28HVXcX2q8P" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
-        </tr>
-        <tr>
-          <td><strong>Business Automation</strong><br><span style="font-size:11px;color:#57606a;">Product Connect in Action</span></td>
-          <td>—</td>
-          <td>FSM Product Connect in Action: Turning Core-to-Modernize into Client Value at State Farm. Covers how PM, CSEs, sellers &amp; account teams align around estate, product truth, target architecture, and business value across vitality, containerization, managed/SaaS &amp; expansion motions. Presented by Monika Aggarwal, Chancellor &amp; Chris Suryo.</td>
-          <td><a href="https://ec.yourlearning.ibm.com/w3/playback/10577198" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
-        </tr>
-        <tr>
-          <td><strong>Content Services</strong></td>
-          <td>—</td>
-          <td>AI Editions — Content Services modernization</td>
-          <td><a href="https://ibm.seismic.com/Link/Content/DCpV4Q4WRQ9mj8WDHM7VJbTBB4q3" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
-        </tr>
-        <tr>
-          <td><strong>Process Automation</strong></td>
-          <td>—</td>
-          <td>AI Editions — Process Automation modernization</td>
-          <td><a href="https://ibm.seismic.com/Link/Content/DC7dMjhQDhWXHG4FTPbQ3HJM4dq3" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
-        </tr>
-        <tr>
-          <td><strong>Decision Intelligence</strong></td>
-          <td>—</td>
-          <td>AI Editions — Decision Intelligence modernization</td>
-          <td><a href="https://ibm.seismic.com/Link/Content/DCg9hB9MW9FF78qD3gT46dBP7qHB" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="section-title"><span class="s-icon" style="background:#3b82d4;">6</span> AI Editions Series</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th style="width:20%">Product / Track</th><th style="width:14%">Date</th><th style="width:30%">Session Focus</th><th style="width:36%">Recording</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Db2</strong></td>
+            <td>Mar 27</td>
+            <td>AI Editions — modernization value, containerization path, vitality messaging</td>
+            <td><a href="https://ibm.seismic.com/Link/Content/DCRJ66VdF4hhBGh2q6c7PFcWCH38" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
+          </tr>
+          <tr>
+            <td><strong>MQ</strong></td>
+            <td>Apr 10</td>
+            <td>AI Editions — messaging, roadmap guardrails, field use cases</td>
+            <td><a href="https://ibm.seismic.com/Link/Content/DCqVpPp4Tb47h8QCpX6DqG79DBcV" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
+          </tr>
+          <tr>
+            <td><strong>Cognos Analytics</strong><br><span style="font-size:11px;color:#57606a;">Rachel Su</span></td>
+            <td>May 1</td>
+            <td>Agentic AI for Enterprise BI with IBM Cognos Analytics. Cognos agents help users find, summarize, create, and share reports using natural language inside the governed BI environment — higher productivity, quicker answers, and AI that works with existing metrics, permissions, and controls.</td>
+            <td><a href="https://ibm.seismic.com/Link/Content/DCpGBVVFQCMW6GmVT28HVXcX2q8P" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
+          </tr>
+          <tr>
+            <td><strong>Business Automation</strong><br><span style="font-size:11px;color:#57606a;">Product Connect in Action</span></td>
+            <td>—</td>
+            <td>FSM Product Connect in Action: Turning Core-to-Modernize into Client Value at State Farm. Covers how PM, CSEs, sellers &amp; account teams align around estate, product truth, target architecture, and business value across vitality, containerization, managed/SaaS &amp; expansion motions. Presented by Monika Aggarwal, Chancellor &amp; Chris Suryo.</td>
+            <td><a href="https://ec.yourlearning.ibm.com/w3/playback/10577198" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
+          </tr>
+          <tr>
+            <td><strong>Content Services</strong></td>
+            <td>—</td>
+            <td>AI Editions — Content Services modernization</td>
+            <td><a href="https://ibm.seismic.com/Link/Content/DCpV4Q4WRQ9mj8WDHM7VJbTBB4q3" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
+          </tr>
+          <tr>
+            <td><strong>Process Automation</strong></td>
+            <td>—</td>
+            <td>AI Editions — Process Automation modernization</td>
+            <td><a href="https://ibm.seismic.com/Link/Content/DC7dMjhQDhWXHG4FTPbQ3HJM4dq3" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
+          </tr>
+          <tr>
+            <td><strong>Decision Intelligence</strong></td>
+            <td>—</td>
+            <td>AI Editions — Decision Intelligence modernization</td>
+            <td><a href="https://ibm.seismic.com/Link/Content/DCg9hB9MW9FF78qD3gT46dBP7qHB" target="_blank" style="color:#0f62fe;font-weight:600;">Watch recording</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="note">All sessions published to the Core to Modernization Seismic hub. To access: <a href="https://ibm.seismic.com/Link/Content/DCTgD7f83B2pd8CBqCM699MMBdRB" target="_blank" style="color:#0f62fe;font-weight:600;">Open Core to Modernization on Seismic</a> → look for the <strong>AI Editions Series</strong>. Product interviews recorded. Remaining 35 sessions (12 products × 4 motions minus 13 complete) require PM collaboration to schedule and publish.</div>
+  </div>
+
+  <!-- ── CLIENT BRIEFINGS ──────────────────────────────── -->
+  <div class="section" id="briefings">
+    <div class="section-title"><span class="s-icon gray">7</span> Client Briefing Sessions — Handoff State</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Pillar / Event</th><th>Status</th><th>Date</th><th>Focus</th></tr></thead>
+        <tbody>
+          <tr><td><strong>App Integration — AI-Infused Middleware</strong></td><td><span class="tag tag-green">Completed</span></td><td>May 13</td><td>Sterling, webMethods, API Connect, Aspera — multi-client</td></tr>
+          <tr><td><strong>Content Cortex Product Launch</strong></td><td><span class="tag tag-green">Completed</span></td><td>June 24</td><td>Positioned under Business Automation modernization path</td></tr>
+          <tr><td><strong>Cognos Analytics — Multi-Client</strong></td><td><span class="tag tag-green">Completed</span></td><td>July 16–17</td><td>Agentic analytics, proactive decisions, governance, PA cross-play</td></tr>
+          <tr><td><strong>App Runtime / WAS — Java Modernization</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>July 14</td><td>Multi-client; WAS→Liberty scope; Doug-led</td></tr>
+          <tr><td><strong>Business Automation / CP4BA</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>TBD</td><td>CP4BA expansion and utilization; confirm target accounts and audience</td></tr>
+          <tr><td><strong>Data Architecture — Db2 / DataStage / watsonx.data</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>TBD</td><td>Build repeatable sessions around modernization triggers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── ACTIVE CLIENT WORK & ESCALATIONS ───────────────── -->
+  <div class="section" id="client-work">
+    <div class="section-title"><span class="s-icon gray">8</span> Active Client Work &amp; Escalations</div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; border-bottom: 1px solid #e8e8e8; padding-bottom: 4px; text-transform: uppercase; letter-spacing: 0.02em;">Resolved Client Blockers</h4>
+        <ul style="list-style: none; font-size: 12.5px; padding-left: 0; color: #003a6b;">
+          <li style="padding: 6px 0; border-bottom: 1px solid #f4f4f4; display: flex; align-items: center; gap: 8px;">
+            <span class="tag tag-green">Resolved</span>
+            <strong>State Farm:</strong> Planning Analytics blocker successfully closed.
+          </li>
+          <li style="padding: 6px 0; display: flex; align-items: center; gap: 8px;">
+            <span class="tag tag-green">Resolved</span>
+            <strong>Citi:</strong> Planning Analytics integration issue resolved.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; border-bottom: 1px solid #e8e8e8; padding-bottom: 4px; text-transform: uppercase; letter-spacing: 0.02em;">In-Flight Client Blockers</h4>
+        <ul style="list-style: none; font-size: 12.5px; padding-left: 0; color: #003a6b;">
+          <li style="padding: 6px 0; border-bottom: 1px solid #f4f4f4; display: flex; align-items: center; gap: 8px;">
+            <span class="tag tag-yellow">Active</span>
+            <strong>Citi:</strong> Business Automation Workflow (BAW) active engagement.
+          </li>
+          <li style="padding: 6px 0; display: flex; align-items: center; gap: 8px;">
+            <span class="tag tag-yellow">Active</span>
+            <strong>Schwab:</strong> WAS Client-facing workshop scheduled (Austin).
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em;">Active PoCs &amp; Modernization Motions</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 15%;">Client</th>
+            <th style="width: 25%;">Product &amp; Motion</th>
+            <th style="width: 30%;">Status / Activity</th>
+            <th style="width: 30%;">Financial / Program Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>MetLife</strong></td>
+            <td>Cognos Analytics (Containers)</td>
+            <td>Readiness testing &amp; configuration completed</td>
+            <td>$840K modernization proposal currently with procurement.</td>
+          </tr>
+          <tr>
+            <td><strong>ADP</strong></td>
+            <td>Cognos Analytics (Containers)</td>
+            <td>PoC kickoff completed; testing environment active</td>
+            <td>$3.1M modernization PoC underway; major strategic win.</td>
+          </tr>
+          <tr>
+            <td><strong>JPMC</strong></td>
+            <td>Cognos Analytics (Containers)</td>
+            <td>Blocker identified; escalation with Product Dev</td>
+            <td>High-visibility account; critical path for EOY upgrade.</td>
+          </tr>
+          <tr>
+            <td><strong>Fiserv</strong></td>
+            <td>Cognos Analytics (Containers)</td>
+            <td>Handoff readiness and compatibility check nearly complete</td>
+            <td>Protects core annuity and moves account to hybrid cloud.</td>
+          </tr>
+          <tr>
+            <td><strong>Principal</strong></td>
+            <td>Content Cortex (CMOD + CM8)</td>
+            <td>PoC actively underway following competitive evaluation</td>
+            <td>Aligns sales, technical, and product teams on expansion path.</td>
+          </tr>
+          <tr>
+            <td><strong>Principal</strong></td>
+            <td>BAW Modernization</td>
+            <td>Two-day client workshop complete with business users</td>
+            <td>Defended ServiceNow risk; created expansion path for automation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- ── BLOCKERS ───────────────────────────────────────── -->
   <div class="section" id="blockers">
-    <div class="section-title"><span class="s-icon red">6</span> Active Blockers — Action Required</div>
-    <div class="blockers-grid">
+    <div class="section-title"><span class="s-icon red" style="background:#da1e28;">9</span> Active Blockers &amp; Help Needed</div>
+    
+    <div class="blockers-grid" style="margin-bottom: 20px;">
       <div class="blocker-card critical">
-        <div class="b-title"><span style="color:#c0392b;font-size:15px;">●</span> BVA Template Too Heavy</div>
-        <div class="b-body">PMs view the BVA template as too complex, slowing asset completion across all products.</div>
-        <div class="b-ask">Align to minimum viable input set; use Db2/ODM as benchmark to set expectation.</div>
+        <div class="b-title"><span style="color:#da1e28;font-size:15px;">●</span> Reference Architecture Inconsistency</div>
+        <div class="b-body">Reference architectures delivered in inconsistent formats (PPT, draw.io, Word). Weakens credibility with clients.</div>
+        <div class="b-ask">PM + technical owners to validate current/target state and endorse a single standard template.</div>
       </div>
       <div class="blocker-card watch">
         <div class="b-title"><span style="color:#c87800;font-size:15px;">●</span> Marketing Support Gap</div>
-        <div class="b-body">Client-facing briefings need stronger marketing partnership for reach and attendance.</div>
-        <div class="b-ask">Secure Kelcey's marketing sponsorship commitment for Q3/Q4 events.</div>
+        <div class="b-body">Client-facing briefings need stronger marketing partnership for reach, promotion, and attendance.</div>
+        <div class="b-ask">Secure Kelcey's marketing sponsorship and promo commitment for Q3/Q4 briefing events.</div>
       </div>
       <div class="blocker-card watch">
-        <div class="b-title"><span style="color:#c87800;font-size:15px;">●</span> Portfolio Coverage Gap — Data</div>
+        <div class="b-title"><span style="color:#c87800;font-size:15px;">●</span> Ritika Portfolio Support Gap</div>
         <div class="b-body">Planning Analytics and watsonx.data lack executive engagement and a named delegate PM.</div>
         <div class="b-ask">Confirm executive sponsorship from Priya/Ritika; name a dedicated PA delegate PM.</div>
       </div>
@@ -446,68 +862,188 @@
         <div class="b-ask">Set minimum PM engagement cadence; deploy primary + delegate model per product.</div>
       </div>
     </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border-top: 1px solid #e8e8e8; padding-top: 16px;">
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.02em;">Recommended Resolution Path</h4>
+        <ul style="list-style: none; font-size: 12.5px; padding-left: 0; color: #003a6b;">
+          <li style="padding: 4px 0; border-bottom: 1px solid #f4f4f4;">
+            <strong>For CSEs (Current State):</strong> Capture current state architecture from client engagements.
+          </li>
+          <li style="padding: 4px 0; border-bottom: 1px solid #f4f4f4;">
+            <strong>For Product + ATL (Target State):</strong> PM &amp; Advanced Technology Labs map target state architectures and standardize one template per product.
+          </li>
+          <li style="padding: 4px 0; border-bottom: 1px solid #f4f4f4;">
+            <strong>DRB Triage:</strong> Review blockers biweekly in Product Connect / Decision Review Board.
+          </li>
+          <li style="padding: 4px 0;">
+            <strong>Sequencing:</strong> Start with highest-priority products and 2–3 focus accounts.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.02em;">Decisions Required From Leadership</h4>
+        <ul style="list-style: none; font-size: 12.5px; padding-left: 0; color: #003a6b;">
+          <li style="padding: 4px 0; border-bottom: 1px solid #f4f4f4;">
+            • Assign <strong>named owners</strong> for each blocker.
+          </li>
+          <li style="padding: 4px 0; border-bottom: 1px solid #f4f4f4;">
+            • Secure <strong>engagement cadence commitment</strong> from PM teams.
+          </li>
+          <li style="padding: 4px 0; border-bottom: 1px solid #f4f4f4;">
+            • Secure <strong>executive sponsorship</strong> for Ritika portfolio (PA, watsonx.data).
+          </li>
+          <li style="padding: 4px 0;">
+            • Formalize and endorse <strong>reference architecture standard</strong>.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MODERNIZATION METHODOLOGY ──────────────────────── -->
+  <div class="section" id="methodology">
+    <div class="section-title"><span class="s-icon gray">10</span> Modernization Methodology — "Modernization with Trust"</div>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.02em;">Why This Matters Now (Philosophy)</h4>
+        <div style="font-size: 12.5px; color: #003a6b; line-height: 1.5; margin-bottom: 12px; background: #edf5ff; padding: 12px; border-radius: 6px; border-left: 3px solid #0f62fe;">
+          <strong>Modernization is a risk reduction move, not a feature chase.</strong> A clean upgrade lowers operational and compliance risks today, creating the stable foundation required for future hybrid cloud, container, or agentic automation motions.
+        </div>
+        <div style="font-size: 12px; color: #003a6b; line-height: 1.5;">
+          <strong>What Breaks When You Wait (Cost of Inaction):</strong><br>
+          • Business logic stays buried; change cycles get slower.<br>
+          • Decision logic drifts across uncoordinated applications.<br>
+          • Audit preparation becomes increasingly heavy and manual.<br>
+          • Legacy workflow becomes a silent blocker to efficiency.
+        </div>
+      </div>
+
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.02em;">Why an Upgrade Pays Back</h4>
+        <ul style="list-style: none; font-size: 12.5px; padding-left: 0; color: #003a6b;">
+          <li style="margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #f4f4f4;">
+            <strong style="color: #0f62fe;">✔ Reduce Risk Now:</strong> Lock in platform security, stable operations, and full compliance before proceeding.
+          </li>
+          <li style="margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #f4f4f4;">
+            <strong style="color: #0f62fe;">✔ Supported Versions:</strong> Immediate vendor backing and support path for peace of mind.
+          </li>
+          <li style="margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid #f4f4f4;">
+            <strong style="color: #0f62fe;">✔ Container Ready:</strong> Positions core systems for smooth containerization and cloud migrations.
+          </li>
+          <li>
+            <strong style="color: #0f62fe;">✔ Governed Orchestration:</strong> Establishes required controls and safety rails for agentic automation and AI integration.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.02em;">The Blueprint Framework (6-Step Approach)</h4>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 12px; color: #003a6b;">
+      <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-top: 3px solid #0f62fe;">
+        <strong style="display: block; margin-bottom: 4px; color: #0f62fe;">1. Pick One Slice That Matters</strong>
+        Focus on one end-to-end business flow and its full dependency chain (apps, integration, data, operations). Example: Customer onboarding or fraud detection.
+      </div>
+      <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-top: 3px solid #0f62fe;">
+        <strong style="display: block; margin-bottom: 4px; color: #0f62fe;">2. Align on What "Clean" Means</strong>
+        Confirm supported versions, compatibility matrix, security controls, rollback procedures, and audit evidence requirements upfront.
+      </div>
+      <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-top: 3px solid #0f62fe;">
+        <strong style="display: block; margin-bottom: 4px; color: #0f62fe;">3. Execute One Upgrade End-to-End</strong>
+        Assign a single IBM owner to coordinate IBM product, support, and delivery teams with the client's platform, app, and risk leads.
+      </div>
+      <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-top: 3px solid #0f62fe;">
+        <strong style="display: block; margin-bottom: 4px; color: #0f62fe;">4. Prove It With Evidence</strong>
+        Capture clear metrics: operational stability results, clean execution of the change window, and audit-ready handoff artifacts.
+      </div>
+      <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-top: 3px solid #0f62fe;">
+        <strong style="display: block; margin-bottom: 4px; color: #0f62fe;">5. Create a Repeatable Pattern</strong>
+        Capture exact execution steps, prerequisites, and resource ownership in a lightweight runbook to accelerate subsequent upgrades.
+      </div>
+      <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-top: 3px solid #0f62fe;">
+        <strong style="display: block; margin-bottom: 4px; color: #0f62fe;">6. Scale in Waves</strong>
+        Deploy the proven pattern across the next 2-3 target accounts, broadening the scope only after the operating model is stable.
+      </div>
+    </div>
   </div>
 
   <!-- ── OPERATING CADENCE ──────────────────────────────── -->
   <div class="section" id="cadence">
-    <div class="section-title"><span class="s-icon gray">7</span> Operating Cadence</div>
-    <table>
-      <thead><tr><th>Meeting</th><th>Frequency</th><th>Attendees</th><th>Purpose</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Product Connect</strong></td><td>Biweekly</td><td>Monika, Carrie, Stacy, Carson</td><td>Progress, blockers, success stories, field requests</td></tr>
-        <tr><td><strong>Executive Checkpoint</strong></td><td>Monthly</td><td>Priya, Krishnan, Rolando, Monika, Carrie</td><td>Strategic alignment, portfolio direction, leadership asks</td></tr>
-        <tr style="background:#fff5f5;"><td><strong>Decision Review Board</strong></td><td><span class="tag tag-red">Proposed</span></td><td>Product Connect core + account owners</td><td>Fast triage on 2–3 priority blocked accounts; named decisions</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- ── PRODUCT PILLARS ────────────────────────────────── -->
-  <div class="section" id="pillars">
-    <div class="section-title"><span class="s-icon gray">8</span> Four Product Pillars &amp; Key Accounts</div>
-    <div class="pillars-grid">
-      <div class="pillar-card">
-        <h4>Application &amp; Runtimes</h4>
-        <div class="p-products">WAS, Liberty, JSphere, Suite for Java, CP4A, Code Assistant for Java</div>
-        <div class="p-clients">State Farm · BNY Mellon · JPMorgan · Mastercard · Citi · Fidelity · USAA · Truist</div>
-      </div>
-      <div class="pillar-card">
-        <h4>Application Integration</h4>
-        <div class="p-products">MQ, DataPower, API Connect, App Connect, webMethods, Sterling MFT, B2B Integration, Aspera, Event Automation, CP4I</div>
-        <div class="p-clients">State Farm · BofA · Fidelity · PNC · Navy Federal · ADP · State Street · Citi · Allstate</div>
-      </div>
-      <div class="pillar-card">
-        <h4>Business Automation</h4>
-        <div class="p-products">BAW, ODM, FileNet / Content Cortex, BAMOE, RPA, CP4BA, Decision Services, Capture, Decision Optimization</div>
-        <div class="p-clients">BofA · Mastercard · JPMorgan · State Farm · Wells Fargo · Progressive · PNC · USAA · US Bancorp</div>
-      </div>
-      <div class="pillar-card">
-        <h4>Data Architecture</h4>
-        <div class="p-products">Db2, DataStage, Cognos Analytics, Planning Analytics, watsonx.data, Netezza, Data Replication, Optim, MDM, SPSS</div>
-        <div class="p-clients">BofA · JPMorgan · State Farm · Fiserv · Morgan Stanley · Schwab · Principal · MetLife · Goldman Sachs</div>
-      </div>
+    <div class="section-title"><span class="s-icon gray">11</span> Operating Cadence &amp; Governance</div>
+    
+    <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em;">Established Meetings</h4>
+    <div class="table-wrap" style="margin-bottom: 20px;">
+      <table>
+        <thead><tr><th>Meeting</th><th>Frequency</th><th>Attendees</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Product Connect</strong></td><td>Biweekly</td><td>Monika, Carrie, Stacy, Rolando</td><td>Share progress, remove bottlenecks, coordinate asset development &amp; success stories.</td></tr>
+          <tr><td><strong>Executive Checkpoint</strong></td><td>Monthly</td><td>Priya, Krishnan, Rolando, Monika, Carrie</td><td>Strategic alignment, portfolio direction, executive support &amp; leadership asks.</td></tr>
+          <tr style="background:#fff5f5;"><td><strong>Decision Review Board</strong></td><td><span class="tag tag-red">Proposed</span></td><td>Krishnan, Rolando, Product Connect leads + named account owners</td><td>Cross-functional forum to make binding decisions on priority C2M accounts — covering PM roadmap commitments, field resource allocation, modernization motion go/no-go, and escalation resolution. Ensures no account stays blocked waiting for alignment that requires leadership authority.</td></tr>
+        </tbody>
+      </table>
     </div>
-    <p style="font-size:12px;color:#57606a;margin-top:4px;"><strong>4 C2M Motions:</strong> Vitality (keep current &amp; supported) · Containerization (hybrid cloud modernization) · Managed/as-a-Service (operational scale) · Expansion (net new on established trust)</p>
+
   </div>
 
-  <!-- ── CLIENT BRIEFINGS ──────────────────────────────── -->
-  <div class="section" id="briefings">
-    <div class="section-title"><span class="s-icon gray">9</span> Client Briefing Sessions — Handoff State</div>
-    <table>
-      <thead><tr><th>Pillar / Event</th><th>Status</th><th>Date</th><th>Focus</th></tr></thead>
-      <tbody>
-        <tr><td><strong>App Integration — AI-Infused Middleware</strong></td><td><span class="tag tag-green">Completed</span></td><td>May 13</td><td>Sterling, webMethods, API Connect, Aspera — multi-client</td></tr>
-        <tr><td><strong>Content Cortex Product Launch</strong></td><td><span class="tag tag-green">Completed</span></td><td>June 24</td><td>Positioned under Business Automation modernization path</td></tr>
-        <tr><td><strong>Cognos Analytics — Multi-Client</strong></td><td><span class="tag tag-green">Completed</span></td><td>July 16–17</td><td>Agentic analytics, proactive decisions, governance, PA cross-play</td></tr>
-        <tr><td><strong>App Runtime / WAS — Java Modernization</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>July 14</td><td>Multi-client; WAS→Liberty scope; Doug-led</td></tr>
-        <tr><td><strong>Business Automation / CP4BA</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>TBD</td><td>CP4BA expansion and utilization; confirm target accounts and audience</td></tr>
-        <tr><td><strong>Data Architecture — Db2 / DataStage / watsonx.data</strong></td><td><span class="tag tag-yellow">In Progress</span></td><td>TBD</td><td>Build repeatable sessions around modernization triggers</td></tr>
-      </tbody>
-    </table>
+
+  <!-- ── RISKS & MITIGATION ─────────────────────────────── -->
+  <div class="section" id="risks">
+    <div class="section-title"><span class="s-icon red" style="background:#da1e28;">12</span> Risks &amp; Mitigation</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 25%;">Identified Risk</th>
+            <th style="width: 20%;">Impact on Program</th>
+            <th style="width: 55%;">Mitigation Plan / Handoff Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PM Bandwidth Constraints</strong></td>
+            <td><span class="tag tag-yellow">Medium</span></td>
+            <td>Prioritize highest-value products; deploy the primary + delegate model per pillar; escalate to Priya for executive backing.</td>
+          </tr>
+          <tr>
+            <td><strong>Reference Architecture Inconsistency</strong></td>
+            <td><span class="tag tag-red">High</span></td>
+            <td>Endorse a single standard template; assign Ryan Mongenel as architect lead; run 3 product pilots immediately.</td>
+          </tr>
+          <tr>
+            <td><strong>BVA Complexity Pushback</strong></td>
+            <td><span class="tag tag-green">Resolved</span></td>
+            <td><strong>Resolved:</strong> CSEs own and populate initial drafts; PMs do validation only. Drastically reduced PM friction.</td>
+          </tr>
+          <tr>
+            <td><strong>Marketing Support Gap</strong></td>
+            <td><span class="tag tag-yellow">Medium</span></td>
+            <td>Secure Kelcey's marketing sponsorship commitment; tie client briefings directly to major product launch announcements.</td>
+          </tr>
+          <tr>
+            <td><strong>Ritika Portfolio Coverage Gap</strong></td>
+            <td><span class="tag tag-red">High</span></td>
+            <td>Escalate to Priya/Ritika for a named executive sponsor for Planning Analytics and watsonx.data; align to agentic roadmap.</td>
+          </tr>
+          <tr>
+            <td><strong>Field Adoption Lag</strong></td>
+            <td><span class="tag tag-yellow">Medium</span></td>
+            <td>Measure BVA downloads in ISC Value 360; run quarterly enablement refresh sessions; tie asset usage to FSM account wins.</td>
+          </tr>
+          <tr>
+            <td><strong>Client Escalation Volume</strong></td>
+            <td><span class="tag tag-red">High</span></td>
+            <td>Stand up Decision Review Board (DRB) for rapid triage; publish clear escalation SLAs; empower CSEs with a fast-path to PM.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- ── KEY CONTACTS ───────────────────────────────────── -->
   <div class="section" id="contacts">
-    <div class="section-title"><span class="s-icon gray">10</span> Key Contacts</div>
+    <div class="section-title"><span class="s-icon gray">14</span> Key Contacts</div>
     <div class="contacts-grid">
       <div class="contact-card">
         <strong>Priya Srinivasan</strong>
@@ -587,38 +1123,171 @@
     </div>
   </div>
 
-  <!-- ── FIRST-WEEK CHECKLIST ───────────────────────────── -->
-  <!-- ── RESOURCES ─────────────────────────────────────── -->
+  <!-- ── KEY RESOURCES ─────────────────────────────────── -->
   <div class="section" id="resources">
-    <div class="section-title"><span class="s-icon gray">11</span> Key Resources</div>
-    <table>
-      <thead><tr><th style="width:30%">Resource</th><th>Link</th><th style="width:28%">Notes</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>FSM Product Connect Running Log</strong></td>
-          <td><a href="https://ibm.ent.box.com/notes/2171416772962?s=jeixfhoa9miyf068aw601lph3u64npfy" target="_blank" style="color:#3b82d4;word-break:break-all;">ibm.ent.box.com/notes/2171416772962</a></td>
-          <td>Box Notes — full program log, 6 pages. Read first.</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="section-title"><span class="s-icon gray">15</span> Key Resources &amp; Presentations</div>
+    
+    <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em;">Core Program Artifacts</h4>
+    <div class="table-wrap" style="margin-bottom: 20px;">
+      <table>
+        <thead><tr><th style="width:30%">Resource / Document</th><th style="width:40%">Access Link</th><th>Purpose &amp; Handoff Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>FSM Product Connect Running Log</strong></td>
+            <td><a href="https://ibm.ent.box.com/notes/2171416772962?s=jeixfhoa9miyf068aw601lph3u64npfy" target="_blank" style="color:#0f62fe;font-weight:600;word-break:break-all;">Open Running Log in Box</a></td>
+            <td>Box Notes — full biweekly tracking log, 6 pages of history, decisions, and priority accounts. <strong>Read first.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>AI Editions Seismic Hub</strong></td>
+            <td><a href="https://ibm.seismic.com/Link/Content/DCTgD7f83B2pd8CBqCM699MMBdRB" target="_blank" style="color:#0f62fe;font-weight:600;word-break:break-all;">Open Seismic Hub</a></td>
+            <td>Enablement recordings, recorded product management interviews, sales talk tracks, and packaging guardrails.</td>
+          </tr>
+          <tr>
+            <td><strong>Who's Who in Core Software</strong></td>
+            <td><span class="tag tag-gray">Seismic Directory</span></td>
+            <td>Comprehensive PM contact directory by product pillar, maintained on Seismic.</td>
+          </tr>
+          <tr>
+            <td><strong>BVA Models Folder</strong></td>
+            <td><span class="tag tag-blue">Box Shared Folder</span></td>
+            <td>Location of raw Business Value Assessment templates, workbooks, drafts, and published sheets in progress.</td>
+          </tr>
+          <tr>
+            <td><strong>Reference Architecture Folder</strong></td>
+            <td><span class="tag tag-blue">Box Shared Folder</span></td>
+            <td>Location of completed and in-flight current-state &amp; target-state architecture diagrams (PPT, draw.io, and Visio).</td>
+          </tr>
+          <tr>
+            <td><strong>Planning Analytics Box Folder</strong></td>
+            <td><span class="tag tag-blue">Box Shared Folder</span></td>
+            <td>Planning Analytics (PA) specific client assets, competitive positioning decks, and pilot results.</td>
+          </tr>
+          <tr>
+            <td><strong>PM Engagement Intake Model</strong></td>
+            <td><span class="tag tag-green">HTML Workflow</span></td>
+            <td>Multi-agent intake workflow design layout representing the triage rules and approval path.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="section" id="checklist">
-    <div class="section-title"><span class="s-icon gray">12</span> Incoming Lead — First-Week Checklist</div>
-    <ul class="checklist">
-      <li>Read Product Connect running log on Box (all 6 pages)</li>
-      <li>Join biweekly Product Connect calendar series</li>
-      <li>Access AI Editions Seismic hub — review DB2, MQ, Cognos content</li>
-      <li>Join monthly executive checkpoint calendar invite</li>
-      <li>Open ISC Value 360 — review Db2, ODM, Cognos, and WAS/Liberty BVA templates</li>
-      <li>Join Product Connect Slack channel — read 30-day history</li>
-      <li>Review "Who's Who in Core Software" on Seismic</li>
-      <li>Schedule 1:1 with Carrie Rogers (reference architectures)</li>
-      <li>Schedule 1:1 with Stacy Nawrocki (AI Editions + BVA)</li>
-      <li>Schedule 1:1 with Erik Mlincek (BVE methodology)</li>
-      <li>Review active client escalations with Rolando Franco</li>
-      <li>Download and review all key transition presentation decks</li>
-    </ul>
+    <div class="section-title"><span class="s-icon gray">13</span> Role Transition Checklist &amp; Responsibilities</div>
+    
+    <div style="margin-bottom: 24px;">
+      <h3 style="font-size: 14px; font-weight: 700; color: #003a6b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 2px solid #0f62fe; padding-bottom: 4px;">Immediate Handoff Schedule (Next 30 Days)</h3>
+      
+      <div class="checklist-week">
+        <h4>Week 1: Knowledge Transfer</h4>
+        <ul>
+          <li>Review this transition plan in full and download transition resources.</li>
+          <li>Review the FSM Product Connect Running Log on Box (all 6 pages).</li>
+          <li>Access the AI Editions Seismic hub — review DB2, MQ, and Cognos content.</li>
+          <li>Open ISC Value 360 — review Db2, ODM, Cognos, and WAS/Liberty BVA templates.</li>
+          <li>Schedule 1:1 sessions with core team members (Carrie, Stacy, Carson).</li>
+          <li>Join the Product Connect Slack channel — read the 30-day history.</li>
+        </ul>
+      </div>
+
+      <div class="checklist-week">
+        <h4>Week 2: Stakeholder Alignment</h4>
+        <ul>
+          <li>Meet with Priya Srinivasan — align on executive priorities and PM engagement expectations.</li>
+          <li>Meet with Krishnan NR — align on field priorities and account-level execution.</li>
+          <li>Meet with Rolando Franco — transfer active client escalations and account context.</li>
+          <li>Join the next biweekly Product Connect meeting as an observer.</li>
+          <li>Review active client briefing schedules and PM speaker commitments.</li>
+          <li>Review "Who's Who in Core Software" directory on Seismic.</li>
+        </ul>
+      </div>
+
+      <div class="checklist-week">
+        <h4>Week 3: Asset &amp; Process Ownership</h4>
+        <ul>
+          <li>Take formal ownership of the Product Connect Running Log (Box Notes).</li>
+          <li>Review all in-flight BVAs with Erik Mlincek (WAS/Liberty, FileNet sequenced next).</li>
+          <li>Validate outstanding reference architecture requests with Carrie Rogers.</li>
+          <li>Confirm client briefing logistics for upcoming sessions (WAS/Liberty &amp; Cognos).</li>
+          <li>Identify any gaps or missing documentation and request access.</li>
+          <li>Coordinate with Advanced Technology Labs (Ryan Mongenel) on ref architecture templates.</li>
+        </ul>
+      </div>
+
+      <div class="checklist-week">
+        <h4>Week 4: Active Leadership</h4>
+        <ul>
+          <li>Lead the biweekly Product Connect meeting.</li>
+          <li>Present program status to Priya and Krishnan in the monthly Executive Checkpoint.</li>
+          <li>Identify and sequence the next 3 priority BVAs for PM engagement.</li>
+          <li>Confirm dedicated marketing support for Q3 client briefings.</li>
+          <li>Address the top 2 active blockers using executive sponsorship paths.</li>
+          <li>Formally assume role as primary bridge between FSM technical sales and product management.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 24px;">
+      <h3 style="font-size: 14px; font-weight: 700; color: #003a6b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 2px solid #0f62fe; padding-bottom: 4px;">Ongoing Responsibilities</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 12.5px; color: #003a6b;">
+        <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-left: 3px solid #0f62fe;">
+          <strong style="color: #0f62fe; display: block; margin-bottom: 6px;">Program Coordination</strong>
+          • Lead biweekly Product Connect meetings.<br>
+          • Maintain the running log with priorities, owners, and status.<br>
+          • Coordinate monthly executive checkpoints with Priya &amp; Krishnan.<br>
+          • Stand up the proposed Decision Review Board (DRB) cadence for blocked accounts.
+        </div>
+        <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-left: 3px solid #0f62fe;">
+          <strong style="color: #0f62fe; display: block; margin-bottom: 6px;">Asset Development</strong>
+          • Drive completion of the remaining 41 BVAs (target: 2–3 per month).<br>
+          • Coordinate PM validation of BVA value levers and benefit assumptions.<br>
+          • Standardize reference architecture templates with Carrie Rogers.<br>
+          • Publish enablement content to Seismic (remaining 35 product sessions).
+        </div>
+        <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-left: 3px solid #0f62fe;">
+          <strong style="color: #0f62fe; display: block; margin-bottom: 6px;">Client Engagement &amp; PM Relations</strong>
+          • Support 9 remaining client briefings (3 completed, 12 planned).<br>
+          • Coordinate PM speakers and roadmap guardrails for client events.<br>
+          • Build and maintain the PM coverage matrix (primary &amp; delegate per product).<br>
+          • Route field requests through the agentic intake workflow (once live).
+        </div>
+        <div style="background: #f4f4f4; padding: 12px; border-radius: 6px; border-left: 3px solid #0f62fe;">
+          <strong style="color: #0f62fe; display: block; margin-bottom: 6px;">Field Enablement &amp; Scaling</strong>
+          • Ensure CSEs have access to latest BVAs, architectures, and enablement content.<br>
+          • Translate technical product roadmap guidance into field-safe messaging.<br>
+          • Resolve product packaging questions (AI Editions, licensing, dependencies).<br>
+          • Convert client PoC wins into repeatable success stories.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VISION FOR NEXT PHASE ─────────────────────────── -->
+  <div class="section" id="vision">
+    <div class="section-title"><span class="s-icon gray">16</span> Vision for Next Phase</div>
+    
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; font-size: 12.5px; color: #003a6b;">
+      <div style="background: #f4f4f4; padding: 14px; border-radius: 8px; border-left: 3px solid #0f62fe;">
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em;">1. Scale the Model</h4>
+        • <strong>Replicate in Other Markets:</strong> Extend the successful Product Connect framework beyond FSM to other global technical sales teams (EMEA, APAC).<br><br>
+        • <strong>Playbook Publication:</strong> Document and publish a comprehensive, repeatable engagement playbook.<br><br>
+        • <strong>Expand Product Scope:</strong> Bring additional portfolios (e.g., Security, Sustainability, AI/ML platforms) under the Product Connect model.
+      </div>
+
+      <div style="background: #f4f4f4; padding: 14px; border-radius: 8px; border-left: 3px solid #0f62fe;">
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em;">2. Deepen Client Trust</h4>
+        • <strong>Modernization Success Stories:</strong> Publish 5 end-to-end "Modernization with Trust" client case studies complete with audit-ready proof points.<br><br>
+        • <strong>Client Advisory Board:</strong> Establish a quarterly technical advisory forum with architects from the top 10 FSM accounts.<br><br>
+        • <strong>Proactive Renewals:</strong> Deploy C2M and BVA assets 12 months ahead of major ELA renewals to protect and expand core revenue.
+      </div>
+
+      <div style="background: #f4f4f4; padding: 14px; border-radius: 8px; border-left: 3px solid #0f62fe;">
+        <h4 style="font-size: 13px; font-weight: 700; color: #003a6b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em;">3. AI-First Evolution</h4>
+        • <strong>Agentic Positioning:</strong> Align all BVAs, reference architectures, and client briefings with the "agentic disruption" and assistant narrative.<br><br>
+        • <strong>Autonomous Operations:</strong> Develop technical proofs of concept showing automated self-healing and optimization for core software.<br><br>
+        • <strong>Orchestration &amp; Safety:</strong> Position workflow and decision management as the essential governing rails for enterprise AI.
+      </div>
+    </div>
   </div>
 
   <div class="footer">
